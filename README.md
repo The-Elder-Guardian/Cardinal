@@ -2,7 +2,7 @@
 Collection de Skripts pour le serveur The Elder Guardian.
 
 ## Composition
-### Est nommé Atom l'ensemble des Skripts composant le serveur The Elder Guardian. Entrent dans cet ensemble :
+Atom est l'ensemble des Skripts composant le serveur The Elder Guardian. Entrent dans cet ensemble :
 
 | Nom      	| Description                                                                                	| Mainteneur 	| Développement 	|
 |----------	|--------------------------------------------------------------------------------------------	|------------	|---------------	|
