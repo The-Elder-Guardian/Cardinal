@@ -1,0 +1,5 @@
+options:
+	version: 0.0.1
+
+function navitron-version():
+	return {@version}
