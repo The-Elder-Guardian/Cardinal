@@ -17,6 +17,8 @@ function testForUpdate(script: text):
 		set {_installed} to electron-version()
 	if {_script} is "navitron":
 		set {_installed} to navitron-version()
+	if {_script} is "updatron":
+		set {_installed} to {@updatron_version}
 	if {_latest} is not {_installed}:
 		return true
 	else:
@@ -37,7 +39,9 @@ function installUpdate(script: text):
 		if {_script} is "electron":
 			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%electron-version()%.sk"
 		if {_script} is "navitron":
-			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%navitron-version()%.sk"
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%navitron-version()%.sk
+		if {_script} is "updatron":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%{@updatron_version}%.sk"
 		download from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/scripts/%{_script}%.sk" to file path "plugins/Skript/scripts/%{_script}%.sk"
 		wait 5 ticks
 		execute console command "/skript reload %{_script}%"
@@ -45,46 +49,51 @@ function installUpdate(script: text):
 
 	
 on load:
-	send "{@prefix} Mise à jour des scripts depuis Github..." to console
-	# CHECK ION UPDATES
-	if script "ion.sk" is loaded:
-		send "{@prefix} Ion est chargé, vérification des mises à jour..." to console
-		if testForUpdate(ion):
-			send "{@prefix} Une mise à jour est disponible pour Ion, installation en cours..." to console
-			installUpdate(ion)
-
-	# CHECK PHOTON UPDATES
-	if script "photon.sk" is loaded:
-		send "{@prefix} Photon est chargé, vérification des mises à jour..." to console
-		if testForUpdate(photon):
-			send "{@prefix} Une mise à jour est disponible pour Photon, installation en cours..." to console
-			installUpdate(photon)
-			
-	# CHECK PROTON UPDATES
-	if script "proton.sk" is loaded:
-		send "{@prefix} Proton est chargé, vérification des mises à jour..." to console
-		if testForUpdate(proton):
-			send "{@prefix} Une mise à jour est disponible pour Proton, installation en cours..." to console
-			installUpdate(proton)
-						
-	# CHECK NEUTRON UPDATES
-	if script "neutron.sk" is loaded:
-		send "{@prefix} Neutron est chargé, vérification des mises à jour..." to console
-		if testForUpdate(neutron):
-			send "{@prefix} Une mise à jour est disponible pour Neutron, installation en cours..." to console
-			installUpdate(neutron)
-			
-	# CHECK ELECTRON UPDATES
-	if script "electron.sk" is loaded:
-		send "{@prefix} Electron est chargé, vérification des mises à jour..." to console
-		if testForUpdate(electron):
-			send "{@prefix} Une mise à jour est disponible pour Electron, installation en cours..." to console
-			installUpdate(electron)
+	if testForUpdate(updatron):
+		send "{@prefix} Une mise à jour d'Updatron est disponible, installation..." to console
+		installUpdate(updatron)
+	else:
+		send "{@prefix} Mise à jour des scripts depuis Github..." to console
 		
-	# CHECK NAVITRON UPDATES
-	if script "navitron.sk" is loaded:
-		send "{@prefix} Navitron est chargé, vérification des mises à jour..." to console
-		if testForUpdate(navitron):
-			send "{@prefix} Une mise à jour est disponible pour Navitron, installation en cours..." to console
-			installUpdate(navitron)
+		# CHECK ION UPDATES
+		if script "ion.sk" is loaded:
+			send "{@prefix} Ion est chargé, vérification des mises à jour..." to console
+			if testForUpdate(ion):
+				send "{@prefix} Une mise à jour est disponible pour Ion, installation en cours..." to console
+				installUpdate(ion)
+
+		# CHECK PHOTON UPDATES
+		if script "photon.sk" is loaded:
+			send "{@prefix} Photon est chargé, vérification des mises à jour..." to console
+			if testForUpdate(photon):
+				send "{@prefix} Une mise à jour est disponible pour Photon, installation en cours..." to console
+				installUpdate(photon)
+				
+		# CHECK PROTON UPDATES
+		if script "proton.sk" is loaded:
+			send "{@prefix} Proton est chargé, vérification des mises à jour..." to console
+			if testForUpdate(proton):
+				send "{@prefix} Une mise à jour est disponible pour Proton, installation en cours..." to console
+				installUpdate(proton)
+							
+		# CHECK NEUTRON UPDATES
+		if script "neutron.sk" is loaded:
+			send "{@prefix} Neutron est chargé, vérification des mises à jour..." to console
+			if testForUpdate(neutron):
+				send "{@prefix} Une mise à jour est disponible pour Neutron, installation en cours..." to console
+				installUpdate(neutron)
+				
+		# CHECK ELECTRON UPDATES
+		if script "electron.sk" is loaded:
+			send "{@prefix} Electron est chargé, vérification des mises à jour..." to console
+			if testForUpdate(electron):
+				send "{@prefix} Une mise à jour est disponible pour Electron, installation en cours..." to console
+				installUpdate(electron)
+			
+		# CHECK NAVITRON UPDATES
+		if script "navitron.sk" is loaded:
+			send "{@prefix} Navitron est chargé, vérification des mises à jour..." to console
+			if testForUpdate(navitron):
+				send "{@prefix} Une mise à jour est disponible pour Navitron, installation en cours..." to console
+				installUpdate(navitron)
 
