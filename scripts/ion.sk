@@ -1,5 +1,5 @@
 options:
 	version: 0.0.1
 
-function ion-version():
+function ion_version() :: string:
 	return {@version}

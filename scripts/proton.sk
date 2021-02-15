@@ -1,5 +1,5 @@
 options:
 	version: 0.0.1
 
-function proton-version():
+function proton_version() :: string:
 	return {@version}
