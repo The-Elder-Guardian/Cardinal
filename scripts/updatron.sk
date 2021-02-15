@@ -1,2 +1,90 @@
 options:
 	updatron-version: 0.0.1
+	prefix: &e&lAutoUpdate&7&r » &f
+	
+	
+function testForUpdate(script: text):
+	set {_latest} to content from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/version/production/{_script}"
+	if {_script} is "ion":
+		set {_installed} to ion-version()
+	if {_script} is "photon":
+		set {_installed} to photon-version()
+	if {_script} is "proton":
+		set {_installed} to proton-version()
+	if {_script} is "neutron":
+		set {_installed} to neutron-version()
+	if {_script} is "electron":
+		set {_installed} to electron-version()
+	if {_script} is "navitron":
+		set {_installed} to navitron-version()
+	if {_latest} is not {_installed}:
+		return true
+	else:
+		return false
+		
+function installUpdate(script: text):
+	if file path "plugins/Skript/scripts/%{_script}%.sk" is not missing:
+		create directory path "plugins/_backups/%{_script}%"
+		if {_script} is "ion":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%ion-version()%.sk"	
+		if {_script} is "photon":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%photon-version()%.sk"
+			download from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/scripts/%{_script}%.sk" to file path "plugins/Skript/scripts/%{_script}%.sk"
+		if {_script} is "proton":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%proton-version()%.sk"
+		if {_script} is "neutron":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%neutron-version()%.sk"
+		if {_script} is "electron":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%electron-version()%.sk"
+		if {_script} is "navitron":
+			copy file path "plugins/Skript/scripts/%{_script}%.sk" to file path "plugins/_backup/%{_script}%/%{_script}%.before.%navitron-version()%.sk"
+		download from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/scripts/%{_script}%.sk" to file path "plugins/Skript/scripts/%{_script}%.sk"
+		wait 5 ticks
+		execute console command "/skript reload %{_script}%"
+		
+
+	
+on load:
+	send "{@prefix} Mise à jour des scripts depuis Github..." to console
+	# CHECK ION UPDATES
+	if script "ion.sk" is loaded:
+		send "{@prefix} Ion est chargé, vérification des mises à jour..." to console
+		if testForUpdate(ion):
+			send "{@prefix} Une mise à jour est disponible pour Ion, installation en cours..." to console
+			installUpdate(ion)
+
+	# CHECK PHOTON UPDATES
+	if script "photon.sk" is loaded:
+		send "{@prefix} Photon est chargé, vérification des mises à jour..." to console
+		if testForUpdate(photon):
+			send "{@prefix} Une mise à jour est disponible pour Photon, installation en cours..." to console
+			installUpdate(photon)
+			
+	# CHECK PROTON UPDATES
+	if script "proton.sk" is loaded:
+		send "{@prefix} Proton est chargé, vérification des mises à jour..." to console
+		if testForUpdate(proton):
+			send "{@prefix} Une mise à jour est disponible pour Proton, installation en cours..." to console
+			installUpdate(proton)
+						
+	# CHECK NEUTRON UPDATES
+	if script "neutron.sk" is loaded:
+		send "{@prefix} Neutron est chargé, vérification des mises à jour..." to console
+		if testForUpdate(neutron):
+			send "{@prefix} Une mise à jour est disponible pour Neutron, installation en cours..." to console
+			installUpdate(neutron)
+			
+	# CHECK ELECTRON UPDATES
+	if script "electron.sk" is loaded:
+		send "{@prefix} Electron est chargé, vérification des mises à jour..." to console
+		if testForUpdate(electron):
+			send "{@prefix} Une mise à jour est disponible pour Electron, installation en cours..." to console
+			installUpdate(electron)
+		
+	# CHECK NAVITRON UPDATES
+	if script "navitron.sk" is loaded:
+		send "{@prefix} Navitron est chargé, vérification des mises à jour..." to console
+		if testForUpdate(navitron):
+			send "{@prefix} Une mise à jour est disponible pour Navitron, installation en cours..." to console
+			installUpdate(navitron)
+
