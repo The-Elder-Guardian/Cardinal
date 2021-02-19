@@ -12,3 +12,4 @@ Cardinal est l'ensemble des Skripts composant le serveur The Elder Guardian. Ent
 | Neutron  	| Gestion des actions effectuées à la connection. 	                                          | Aeris      	| 🌗             	|
 | Electron 	| Gestion de la bande-son.                         	                                          | Aeris      	| 🌘             	|
 | Navitron 	| Gestion des chemins de fer.                     	                                          | Aeris      	| 🌘             	|
+| Updatron 	| Gestion des mises à jour depuis Github                     	                                  | Aeris      	| 🌖             	|
