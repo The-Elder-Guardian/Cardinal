@@ -27,6 +27,6 @@ jobs:
         reviewers: false
         labels: prêt à merge
         blocking_labels: ne pas merge
-        checks_enabled: false
+        checks_enabled: true
         method: rebase
         delete_source_branch: true
