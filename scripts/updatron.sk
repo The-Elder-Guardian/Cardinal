@@ -105,3 +105,15 @@ on load:
 				send "{@prefix} Une mise à jour est disponible pour Navitron, installation en cours..." to console
 				installUpdate("navitron")
 
+command forceUpdate <text>:
+	permission: updatron.forceupdate
+	executable by: console and players
+	trigger:
+		if command sender is console:
+			send "{@prefix} Mise à jour forcée pour le script %arg-1%" to console
+			installUpdate(arg-1)
+		else:
+			send "{@prefix} Mise à jour forcée pour le script %arg-1%" to player
+			send "{@prefix} Mise à jour forcée pour le script %arg-1% par %player%" to console
+			installUpdate(arg-1)
+			send "{@prefix} Mise à jour terminée" to player
