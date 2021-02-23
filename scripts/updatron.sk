@@ -51,6 +51,7 @@ function installUpdate(script: text):
 			download from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/scripts/%{_script}%.sk" to file path "plugins/Skript/scripts/%{_script}%.sk"
 			wait 5 ticks
 			execute console command "/skript reload %{_script}%"
+			send "{@prefix} Mise à jour effectuée avec succés..." to console
 		
 
 	
