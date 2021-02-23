@@ -30,7 +30,6 @@ function testForUpdate(script: text) :: boolean:
 		
 function installUpdate(script: text):
 	send "{_script} vérif debug" to console
-	send "%{_script}% vérif"
 	if "%{_script}%" is not "":
 		if file path "plugins/Skript/scripts/%{_script}%.sk" is not missing:
 			create directory path "plugins/_backups/%{_script}%"

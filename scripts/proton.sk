@@ -2,4 +2,4 @@ options:
 	version: 0.0.1
 
 function proton_version() :: string:
-	return {@version}
+	return "{@version}"
