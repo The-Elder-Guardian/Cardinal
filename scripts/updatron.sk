@@ -56,8 +56,7 @@ function installUpdate(script: text):
 
 	
 on load:
-	send "{@updatron-version}" to console
-	send "%content from url "https://github.com/The-Elder-Guardian/Cardinal/raw/master/version/production/updatron"%" to console
+	send "{@prefix} Version d'Updatron installée : &b{@updatron-version}" to console
 	if testForUpdate("updatron"):
 		send "{@prefix} Une mise à jour d'Updatron est disponible, installation..." to console
 		installUpdate("updatron")
